@@ -1,19 +1,86 @@
-<div class="container-fluid">
-  <div class="row" style="height:20%">
-
+<header style="height:50px;">
+</header>
+<div  class="row">
+  <div class="col-md-2">
   </div>
-  <div class="row" style="height:80%">
-    <div class="col-2"></div>
-    <div class="col-1">
-      <div class="row icon" style="background-image: url('../../public/assets/newspaper.png'); color: white">
-        TEXTBOX
-      </div>
+  <div class="col-md-1">
+    <nav class="sidebar flex-column-nowrap" style="background-color: transparent; box-shadow: none; border-style: none">
+      <a class="sidebar__logo" style="margin:0px 0px 40px 40px; color: black">
+        <abbr class="logo" style="color:black">DS</abbr>
+      </a>
+
+      <ul cdkDropList (cdkDropListDropped)="drop($event)" class="sidebar__nav-list flex-column-nowrap" role="menubar"
+        aria-label="Main desktop menu">
+
+        <li cdkDrag class="nav-list__item about-me active fake-button flex-column-nowrap" role="menuitem">
+          <a class="flex-row-wrap" tabindex="0" style="padding-bottom: 70% ; border-style: none">
+            <img src="../../assets/images/folder.png" alt="folfer" width="90%" height="90%">
+          </a>
+        </li>
+
+        <li cdkDrag class="nav-list__item skills fake-button flex-column-nowrap" role="menuitem">
+          <a class="flex-row-wrap" tabindex="0" style="padding-bottom: 70%; border-style: none">
+            <img src="../../assets/images/newspaper.png" alt="folfer" width="90%" height="90%">
+          </a>
+        </li>
+
+        <li cdkDrag class="nav-list__item my-work fake-button flex-column-nowrap" role="menuitem">
+          <a class="flex-row-wrap" tabindex="0" style="padding-bottom: 70%; border-style: none">
+            <img src="../../assets/images/radio-button.png" alt="folfer" width="90%" height="90%" margin-bottom="50%">
+          </a>
+        </li>
+
+        <li cdkDrag class="nav-list__item contact fake-button flex-column-nowrap" role="menuitem">
+          <a class="flex-row-wrap" tabindex="0" style="padding-bottom: 70%">
+            <img src="../../assets/images/check.png" alt="folfer" width="90%" height="90%">
+          </a>
+        </li>
+
+        <li cdkDrag class="nav-list__item skills fake-button flex-column-nowrap" role="menuitem">
+          <a class="flex-row-wrap" tabindex="0" style="padding-bottom: 70%">
+            <img src="../../assets/images/drop-down.png" alt="folfer" width="90%" height="90%">
+          </a>
+        </li>
+
+        <li cdkDrag class="nav-list__item my-work fake-button flex-column-nowrap" role="menuitem">
+          <a class="flex-row-wrap" tabindex="0" style="padding-bottom: 70%">
+            <img src="../../assets/images/uploading-option.png" alt="folfer" width="90%" height="90%">
+          </a>
+        </li>
+
+        <li cdkDrag class="nav-list__item my-work fake-button flex-column-nowrap" role="menuitem">
+          <a class="flex-row-wrap" tabindex="0" style="padding-bottom: 70%">
+            <img src="../../assets/images/attachfile.png" alt="folfer" width="90%" height="90%">
+          </a>
+        </li>
+
+      </ul>
+      <ul class="sidebar__extra-content" role="menu">
+      </ul>
+    </nav>
+  </div>
+  <div  class="col-md-7" style=" height: 550px;">
+    <ng-container #dynamic></ng-container>
+  </div>
+  <div class="col-md-2">
+    <h2 class="card-title" style="color: yellow; font-size: 30px; font-family: Times New Roman, Times, serif; font-weight: bold;"> PROPETIES </h2>
+    <div class="form-group">
+      <label for="usr" style="color: yellow; font-size: 20px; font-family: Times New Roman, Times, serif; font-weight: bold;">TITLE:</label>
+      <input type="text" style= "width: 90% " class="form-control" id="usr">
     </div>
-    <div class="col-7">
+    <div class="form-group">
+      <label for="usr" style="color: yellow; font-size: 20px; font-family: Times New Roman, Times, serif; font-weight: bold;">VALUE:</label>
+      <input type="text" style= "width: 90% "  class="form-control" id="usr">
+    </div>
+    <div class="form-group">
+      <label for="usr" style="color: yellow; font-size: 20px; font-family: Times New Roman, Times, serif; font-weight: bold;">ITEM:</label>
+      <input type="text" style= "width: 90%; "  class="form-control" id="usr">
+      <button type="button" style="color: yellow; font-size: 20px; font-family: Times New Roman, Times, serif; font-weight: bold;width: 30%; margin-left: 54px " onclick="alert('Add Me!')">ADD</button>
+    </div>
+    <div style=" width: 90%; background: whitesmoke; height: 160px; margin-top: 18px">
 
     </div>
-    <div class="col-2">
-
-    </div>
+    <ng-container #dynamicproperty></ng-container>
   </div>
 </div>
+<footer></footer>
