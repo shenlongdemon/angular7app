@@ -2,7 +2,7 @@ import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
-import {ApiClientService} from './apiclient/apiclient.service';
+import {ApiClientService} from "./apiclient";
 
 @NgModule({
   imports: [

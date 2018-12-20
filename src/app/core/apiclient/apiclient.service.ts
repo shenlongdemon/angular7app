@@ -31,7 +31,7 @@ export class ApiClientService {
     let response: AxiosResponse<ApiResult> | null = null;
     try {
       const instance: AxiosInstance = await this.getInstance();
-      response = await instance.get<AxiosResponse<ApiResult>>(url);
+      response = await instance.get<ApiResult>(url);
       apiResult = this.handle(response);
     } catch (e) {
       apiResult = this.catchException(url, e, response);
@@ -44,7 +44,7 @@ export class ApiClientService {
     let response: AxiosResponse<ApiResult> | null = null;
     try {
       const instance: AxiosInstance = await this.getInstance();
-      response = await instance.post<AxiosResponse<ApiResult>>(url, data);
+      response = await instance.post<ApiResult>(url, data);
       
       apiResult = this.handle(response);
     } catch (e) {
