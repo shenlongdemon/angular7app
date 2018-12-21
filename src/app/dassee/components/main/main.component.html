@@ -1,19 +1,57 @@
-<div class="container-fluid">
-  <div class="row" style="height:20%">
+<div class="container-fluid main">
+    <div class="main" style="background-color: rgba(0,0,0,0.9)">
 
-  </div>
-  <div class="row" style="height:80%">
-    <div class="col-2"></div>
-    <div class="col-1">
-      <div class="row icon" style="background-image: url('../../public/assets/newspaper.png'); color: white">
-        TEXTBOX
-      </div>
-    </div>
-    <div class="col-7">
 
-    </div>
-    <div class="col-2">
+        <div class="row" style="height:10%">
 
+        </div>
+        <div class="row" style="height:90%">
+            <div class="col-2"></div>
+            <div class="col-1">
+                <div id="imageicon" class="row icon" (dragstart)="moveItem($event, 'IMAGE')" [draggable]="true"
+                     style="background-image: url('assets/dassee/uploading-option.png'); color: white">
+
+                </div>
+                <div id="groupicon" class="row icon" (dragstart)="moveItem($event, 'GROUP')" [draggable]="true"
+                     style="background-image: url('assets/dassee/folder.png'); color: white">
+
+                </div>
+                <div class="row icon" [draggable]="true"
+                     style="background-image: url('assets/dassee/newspaper.png'); color: white">
+
+                </div>
+                <div class="row icon" [draggable]="true"
+                     style="background-image: url('assets/dassee/check.png'); color: white">
+
+                </div>
+                <div class="row icon" [draggable]="true"
+                     style="background-image: url('assets/dassee/drop-down.png'); color: white">
+
+                </div>
+                <div class="row icon" [draggable]="true"
+                     style="background-image: url('assets/dassee/radio-button.png'); color: white">
+
+                </div>
+                <div class="row icon" [draggable]="true"
+                     style="background-image: url('assets/dassee/attachfile.png'); color: white">
+
+                </div>
+
+
+            </div>
+            <div class="col-7 divmain" (dragover)="allowDrop($event)" (drop)="onDropIntoMain($event)">
+                <div class="group" *ngFor="let group of groups" [ngStyle]="{'top.px': group.posistion.top,'left.px': group.posistion.left}">
+                    <div class="row groupheader">
+                        <label style="color: #ffffff;width:100%;height:100%; text-align: center">{{group.name}}</label>
+                    </div>
+                    <div class="row divfield" *ngFor="let field of group.dynProperties">
+                        <label style="color: #ffffff;width:100%;height:100%; text-align: center">{{field.title}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>
     </div>
-  </div>
 </div>

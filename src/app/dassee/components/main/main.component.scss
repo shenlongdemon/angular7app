@@ -1,31 +1,64 @@
-app-login {
+app-main, app-root {
+  height: 100%;
+  width: 100%;
 }
-.container-fluid::before {
+
+.container-fluid {
+  background-image: url("../../../../assets/dassee/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
   content: "";
   display: block;
   position: absolute;
-  z-index: -1;
-  width: 100%;
+}
+
+.main {
   height: 100%;
+  width: 100%;
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.9);
   top: 0;
   left: 0;
-  background-color: rgba(0,0,0,0.9);
 }
-.container-fluid {
-  background-image: url("../../public/assets/background.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height:100%;
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: -1;
-}
+
 .icon {
-  background-image: url("../../public/assets/newspaper.png");
-  background-size: cover;
+  margin-bottom: 20px;
+  background-image: url("../../../../assets/dassee/newspaper.png");
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100px;
+  height: 50px;
+  width: 50px;
 }
+
+.divmain {
+  border-color: rgba(255, 255, 255, 0.2);
+  border-width: thin;
+  border-style: solid;
+}
+
+.group {
+  background-color: black;
+  width: 150px;
+  position: absolute;
+  display: block;
+}
+
+.groupheader {
+  height:30px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.divfield {
+  height:30px;
+  margin-left: 0px;
+  margin-right: 0px;
+  background-color: #5d6a78;
+}
+
+

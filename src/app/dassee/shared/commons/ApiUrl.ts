@@ -1,9 +1,8 @@
-const ENV : any = {
-  HOST: 'http://192.168.0.102:5000'
-};
+import { environment } from '../../../../environments/environment';
+
 const API = {
   LOGIN: (): string => {
-    return `${ENV.HOST}/api/sellrecognizer/login`;
+    return `${environment.HOST}/api/sellrecognizer/login`;
   },
 };
 

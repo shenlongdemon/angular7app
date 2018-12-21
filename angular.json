@@ -24,7 +24,8 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/app/dassee/assets"
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.css",
