@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {StoreService, ApiService} from '../repositories';
-import {User} from '../shared/models';
-import {LoginDto} from "./dto";
+import {StoreService, ApiService, SaveMaterialProcessSdo, GetMaterialProcessSdo} from '../repositories';
+import {MaterialProcess, ProcessStep, User} from '../shared/models';
+import {GetMaterialProcessDto, LoginDto, SaveMaterialProcessDto} from "./dto";
 import {LoginSdo} from "../repositories/sdo";
 import {BaseService} from "../../core/apiclient";
 
@@ -33,6 +33,30 @@ export class DasseeService extends BaseService {
     return {
       ...this.populate(sdo),
       user
+    };
+  }
+  
+  saveMaterialProcesses = async (processSteps: ProcessStep[]) : Promise<SaveMaterialProcessDto> => {
+    const user: User | null = await this.store.getUser();
+    const ownerId: string = user!.id;
+    const sdo: SaveMaterialProcessSdo = await this.api.saveMaterialProcesses(ownerId, processSteps);
+    return {
+      ...this.populate(sdo)
+    };
+  }
+  
+  
+  getMaterialProcesses = async (): Promise<GetMaterialProcessDto> => {
+    const user: User | null = await this.store.getUser();
+    const ownerId: string = user!.id;
+    const sdo: GetMaterialProcessSdo = await this.api.getMaterialProcesses(ownerId);
+    let materialProcess: MaterialProcess | null = null;
+    if (sdo.success && sdo.materialProcess) {
+      materialProcess = sdo.materialProcess;
+    }
+    return {
+      ...this.populate(sdo),
+      materialProcess
     };
   }
 }

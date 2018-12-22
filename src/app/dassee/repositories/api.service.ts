@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {LoginSdo} from './sdo/LoginSdo';
-import {ApiClientService, ApiResult} from '../../core';
+import {ApiClientService, ApiResult, BaseApi} from '../../core';
 import {API} from '../shared/commons';
-import {BaseApi} from "../../core";
+import {ProcessStep} from "../shared/models";
+import {LoginSdo, GetMaterialProcessSdo, SaveMaterialProcessSdo} from "./sdo";
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,25 @@ export class ApiService extends BaseApi{
        ...this.populate(res),
        user: res.data
      };
+  }
+  
+  saveMaterialProcesses = async (ownerId: string, processSteps: ProcessStep[]): Promise<SaveMaterialProcessSdo> => {
+    const req : any = {
+      ownerId,
+      processSteps
+    };
+    const res: ApiResult = await this.apiclient.post(API.SAVE_MATERIAL_PROCESSES(), req);
+    return {
+      ...this.populate(res)
+    };
+    
+  }
+  
+  getMaterialProcesses = async (ownerId: string): Promise<GetMaterialProcessSdo> =>{
+    const res: ApiResult = await this.apiclient.get(API.GET_MATERIAL_PROCESSES_BY_OWNER_ID(ownerId));
+    return {
+      ...this.populate(res),
+      materialProcess: res.data
+    };
   }
 }

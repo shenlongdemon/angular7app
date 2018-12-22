@@ -42,23 +42,38 @@ app-main, app-root {
 }
 
 .group {
-  background-color: black;
+  background-color: #1f2328;
   width: 150px;
   position: absolute;
   display: block;
+  border-width: 1px;
+  border-color: #323940;
+  border-style: solid;
 }
 
 .groupheader {
   height:30px;
   margin-left: 0px;
   margin-right: 0px;
+  border-width: 1px;
+  border-color: #323940;
+  border-style: solid;
 }
 
 .divfield {
   height:30px;
   margin-left: 0px;
   margin-right: 0px;
-  background-color: #5d6a78;
+  background-color: #14171a;
+  border-top-width: 1px;
+  border-top-color: #22262b;
+  border-top-style: solid;
+
+}
+mat-icon {
+  color: white;
+  font-size: 20px;
+  margin-top: 5px;
 }
 
 

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  HOST: "http://192.168.2.166:5000"
+  HOST: "http://192.168.1.122:5000"
 };
 
 /*

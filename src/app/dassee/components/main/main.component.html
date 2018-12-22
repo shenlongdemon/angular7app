@@ -8,49 +8,130 @@
         <div class="row" style="height:90%">
             <div class="col-2"></div>
             <div class="col-1">
-                <div id="imageicon" class="row icon" (dragstart)="moveItem($event, 'IMAGE')" [draggable]="true"
-                     style="background-image: url('assets/dassee/uploading-option.png'); color: white">
 
-                </div>
                 <div id="groupicon" class="row icon" (dragstart)="moveItem($event, 'GROUP')" [draggable]="true"
-                     style="background-image: url('assets/dassee/folder.png'); color: white">
+                     style="background-image: url('../../../../assets/dassee/folder.png'); color: white">
 
                 </div>
-                <div class="row icon" [draggable]="true"
-                     style="background-image: url('assets/dassee/newspaper.png'); color: white">
+                <div class="row icon" (dragstart)="moveItem($event, 'TEXT')" [draggable]="true"
+                     style="background-image: url('../../../../assets/dassee/newspaper.png'); color: white">
 
                 </div>
-                <div class="row icon" [draggable]="true"
-                     style="background-image: url('assets/dassee/check.png'); color: white">
+                <div
+                        (dragstart)="moveItem($event, 'CHECKBOX')"
+                        class="row icon" [draggable]="true"
+                        style="background-image: url('../../../../assets/dassee/check.png'); color: white">
 
                 </div>
-                <div class="row icon" [draggable]="true"
-                     style="background-image: url('assets/dassee/drop-down.png'); color: white">
+                <div
+                        (dragstart)="moveItem($event, 'COMBOBOX')"
+                        class="row icon" [draggable]="true"
+                        style="background-image: url('../../../../assets/dassee/drop-down.png'); color: white">
 
                 </div>
-                <div class="row icon" [draggable]="true"
-                     style="background-image: url('assets/dassee/radio-button.png'); color: white">
+                <div
+                        (dragstart)="moveItem($event, 'RADIO')"
+                        class="row icon" [draggable]="true"
+                        style="background-image: url('../../../../assets/dassee/radio-button.png'); color: white">
 
                 </div>
-                <div class="row icon" [draggable]="true"
-                     style="background-image: url('assets/dassee/attachfile.png'); color: white">
+                <div
+                        (dragstart)="moveItem($event, 'FILE')"
+                        class="row icon" [draggable]="true"
+                        style="background-image: url('../../../../assets/dassee/attachfile.png'); color: white">
+
+                </div>
+                <div id="imageicon" class="row icon" (dragstart)="moveItem($event, 'IMAGE')" [draggable]="true"
+                     style="background-image: url('../../../../assets/dassee/image.png'); color: white">
 
                 </div>
 
 
             </div>
             <div class="col-7 divmain" (dragover)="allowDrop($event)" (drop)="onDropIntoMain($event)">
-                <div class="group" *ngFor="let group of groups" [ngStyle]="{'top.px': group.posistion.top,'left.px': group.posistion.left}">
-                    <div class="row groupheader">
-                        <label style="color: #ffffff;width:100%;height:100%; text-align: center">{{group.name}}</label>
+                <svg height="100%" width="100%">
+                    <line *ngFor="let group of groups, let i = index;"
+                          [attr.x1]="calcPoint(i).x1"
+                          [attr.y1]="calcPoint(i).y1"
+                          [attr.x2]="calcPoint(i).x2"
+                          [attr.y2]="calcPoint(i).y2"
+                          style="stroke:#323940;stroke-width:2"
+                    />
+                </svg>
+
+                <div *ngFor="let group of groups"
+                     (dragover)="allowDrop($event)" (drop)="onDropfieldIntoGroup($event, group)"
+                     (dragstart)="moveGroup($event, group)" [draggable]="true" class="group"
+                     [ngStyle]="{'top.px': group.position.top,'left.px': group.position.left}">
+                    <div class="row groupheader" (click)="group.isOpen = !group.isOpen">
+                        <div class="col-9" style="padding-right: 0px;">
+                            <label
+                                   style="color: #ffffff;width:100%;height:100%; text-align: center">
+                                {{group.name}}
+                            </label>
+                        </div>
+                        <div class="col-2" style="padding-right: 5px">
+                            <mat-icon> {{group.isOpen ? "expand_more" : "chevron_right"}}</mat-icon>
+                        </div>
                     </div>
-                    <div class="row divfield" *ngFor="let field of group.dynProperties">
-                        <label style="color: #ffffff;width:100%;height:100%; text-align: center">{{field.title}}</label>
+                    <div [hidden]="!group.isOpen" class="row divfield" *ngFor="let field of group.dynProperties"
+                         (click)="this.currentProperty = field;"
+                         style="white-space:nowrap; overflow: hidden;"
+                    >
+                        <div class="col-2" style="padding-left: 5px">
+                            <mat-icon> {{getIconName(field.type)}}</mat-icon>
+                        </div>
+                        <div class="col-10" style="padding-left: 5px;padding-right: 3px;">
+                            <label style="font-size: small; color: #ffffff;width:100%;height:100%; text-align: right">{{field.title}}</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-2">
 
+
+            </div>
+            <div class="col-2" style="padding-right: 30px" *ngIf="this.currentProperty">
+                <div class="row">
+                    <button type="button" (click)="this.save();" class="btn btn-secondary btn-lg btn-block">
+                        {{this.isProcess ? "SAVING ..." : "PUBLISH"}}
+                    </button>
+                </div>
+                <div class="row">
+                    <label style="width: 100%; text-align: center">------------</label>
+                </div>
+                <div class="row">
+                    <label style="width: 100%; text-align: center; font-size: x-large; color: white">PROPERTIES</label>
+                </div>
+                <div class="row">
+
+                    <form class="form-inline">
+                        <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">I</div>
+                            </div>
+                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="this.currentProperty.title" op
+                                   type="text" class="form-control" id="title" placeholder="Title">
+                        </div>
+                    </form>
+                </div>
+                <div class="row" *ngIf="this.currentProperty && isCurrentPropertyHasItems()">
+                    <form class="form-inline">
+                        <div class="input-group mb-2 mr-sm-2">
+                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="this.item" type="text"
+                                   class="form-control" id="inlineFormInputGroupUsername2" placeholder="Enter item and click + ">
+                            <div class="input-group-prepend">
+                                <div (click)="addItemIntoCurrentProperty(item)" class="input-group-text"
+                                     style="cursor: pointer">+
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="row" [hidden]="!isCurrentPropertyHasItems() || getItemsOfCurrentProperty().length === 0">
+                    <ul class="list-group" style="width:100%">
+                        <li class="list-group-item" *ngFor="let item of getItemsOfCurrentProperty()">{{item}}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

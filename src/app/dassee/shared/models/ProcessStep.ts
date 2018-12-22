@@ -5,7 +5,8 @@ export interface ProcessStep extends IObject {
   name: string;
   index: number;
   dynProperties: DynProperty[];
-  posistion: {
+  isOpen: boolean;
+  position: {
     top: number;
     left: number;
   }

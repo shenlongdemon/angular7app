@@ -4,10 +4,11 @@ import {LoginComponent} from './components/login/login.component';
 import {MainComponent} from './components/main/main.component';
 import {DasseeRoutingModule} from './dassee-routing.module';
 import {DasseeService} from './services/dassee.service';
-import {StoreService} from './repositories/store.service';
-import {ApiService} from './repositories/api.service';
+import {StoreService} from './repositories';
+import {ApiService} from './repositories';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {BrowserModule} from '@angular/platform-browser';
     CommonModule,
     FormsModule,
     BrowserModule,
-    DasseeRoutingModule
+    DasseeRoutingModule,
+    MatIconModule
   ],
   exports: [
     LoginComponent, MainComponent
