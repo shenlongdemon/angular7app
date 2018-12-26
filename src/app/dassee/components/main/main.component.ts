@@ -14,6 +14,7 @@ export class MainComponent implements OnInit {
   isLoading: boolean = false;
   isProcess: boolean = false;
   groups: ProcessStep[] = [];
+  currentGroup: ProcessStep | null = null;
   currentTypeIsMoving: string = '';
   currentGroup: ProcessStep | null = null;
   currentProperty: DynProperty | null = null;
@@ -244,5 +245,16 @@ export class MainComponent implements OnInit {
       this.currentProperty.items = items.join(',');
       this.item = CONSTANTS.STR_EMPTY;
     }
+  };
+  
+  loadGroup = (group: ProcessStep) : void => {
+    this.currentGroup = group;
+    this.currentProperty = null;
+  
+  };
+  
+  loadField = (field: DynProperty): void => {
+    this.currentProperty = field;
+    this.currentGroup = null;
   };
 }
